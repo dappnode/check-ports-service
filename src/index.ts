@@ -11,7 +11,7 @@ const app = express();
 
 app.use(helmet());
 
-// /publicIp?tcpPorts=435,456
+// /173.249.41.199?tcpPorts=8092,1194
 
 app.get('/:host', async (req, res) => {
 	try {

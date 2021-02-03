@@ -11,8 +11,8 @@ export function parseSanitizeTcpPortsReq(req: Request) {
 }
 
 function tcpPortsIsArrayOfNumbers(tcpPorts: string[]) {
+	if (tcpPorts.some((tcpPort: any) => isNaN(tcpPort))) throw new HttpError('Ports must be numbers', 400);
 	const tcpPortsSanitized = tcpPorts.map((tcpPort) => parseInt(tcpPort));
-	if (tcpPortsSanitized.some((tcpPort) => isNaN(tcpPort))) throw new HttpError('Ports must be numbers', 400);
 
 	return tcpPortsSanitized;
 }

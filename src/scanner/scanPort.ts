@@ -14,5 +14,3 @@ export async function scanPort({ tcpPort, host }: { tcpPort: number; host: strin
 		throw new HttpError(`Error scanning tcpPort: ${tcpPort}. ${e}`, 500);
 	}
 }
-
-// 173.249.41.199
