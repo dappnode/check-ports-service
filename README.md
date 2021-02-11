@@ -9,7 +9,7 @@ http://**domain(to be defined)**/**dappnode publicIp**?**tcpPorts="ports separat
 
 ##### Example:
 
-http://**domain(to be defined)**/**172.123.456.324**?**tcpPorts=1194,8092,4332**
+http://**domain(to be defined)**/**172.123.456.324**?**tcpPorts=1194,8092,4332&udpPorts=8080,5674**
 
 ### Response
 
@@ -17,9 +17,16 @@ http://**domain(to be defined)**/**172.123.456.324**?**tcpPorts=1194,8092,4332**
 
 ```
 {
-  "tcpPort": number,
-  "status": "open" | "closed"
-}[]
+  "tcpPorts": {
+    port: number,
+    status: "open" | "closed | "error"
+  }[],
+
+  "udpPorts": {
+    port: number,
+    status: "open" | "closed" | "error"
+  }[]
+}
 ```
 
 ##### Example:
