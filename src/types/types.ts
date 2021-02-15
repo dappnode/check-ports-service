@@ -1,4 +1,17 @@
+export interface PortsScan {
+	tcpPorts?: TcpPortScan[];
+
+	udpPorts?: UdpPortScan[];
+}
+
 export interface TcpPortScan {
-	tcpPort: number;
-	status: 'open' | 'closed';
+	port: number;
+	status: 'open' | 'closed' | 'error' | 'unknown';
+	message?: string;
+}
+
+export interface UdpPortScan {
+	port: number;
+	status: 'open' | 'closed' | 'error' | 'unknown';
+	message?: string;
 }
