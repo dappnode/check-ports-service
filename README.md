@@ -19,12 +19,14 @@ http://**domain(to be defined)**/**172.123.456.324**?**tcpPorts=1194,8092,4332&u
 {
   "tcpPorts": {
     port: number,
-    status: "open" | "closed | "error"
+    status: "open" | "closed | "error",
+    message?: string
   }[],
 
   "udpPorts": {
     port: number,
-    status: "open" | "closed" | "error"
+    status: "open" | "closed" | "error",
+    message?: string
   }[]
 }
 ```
