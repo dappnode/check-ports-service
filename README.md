@@ -6,11 +6,15 @@ Most blockchain proyects needs to do port forwarding to work propertly or improv
 
 This API does not track UDP ports due to its untraceability.
 
+## Tecnical aspects
+
 ### Request
 
 http://**API-domain**/**dappnode-publicIp**?**tcpPorts="1194,8092,4000"**
 
 ### Response
+
+Response structure
 
 ```
 {
@@ -28,10 +32,14 @@ http://**API-domain**/**dappnode-publicIp**?**tcpPorts="1194,8092,4000"**
 }
 ```
 
-##### Response Example:
+Response Example:
 
-**[{"tcpPort":8092,"status":"open"},{"tcpPort":1194,"status":"closed"}]**
+`[{"tcpPort":8092,"status":"open"},{"tcpPort":1194,"status":"closed"}]`
 
-#### License
+### CI/CD
+
+This proyect has been setup in a remote machine with watchtower, which allows CI/CD.
+
+## License
 
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details
