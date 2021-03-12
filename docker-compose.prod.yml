@@ -3,10 +3,9 @@ version: "3.4"
 services:
   api:
     container_name: check-ports-service
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/dappnode/check-ports-service:latest
     environment:
+      NODE_ENV: production
       PORT: 3000
     ports:
       - 3030:3000

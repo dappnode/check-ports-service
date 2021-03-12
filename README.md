@@ -6,7 +6,7 @@ Most blockchain proyects needs to do port forwarding to work propertly or improv
 
 This API does not track UDP ports due to its untraceability.
 
-## Tecnical aspects
+## Specifications
 
 ### Request
 
@@ -36,7 +36,17 @@ Response Example:
 
 `[{"tcpPort":8092,"status":"open"},{"tcpPort":1194,"status":"closed"}]`
 
-### CI/CD
+## Development
+
+`docker-compose -f docker-compose.dev.yml build`
+`docker-compose -f docker-compose.dev.yml up`
+
+## Production
+
+`docker-compose -f docker-compose.prod.yml build`
+`docker-compose -f docker-compose.prod.yml up`
+
+## CI/CD
 
 This proyect has been setup in a remote machine with watchtower, which allows CI/CD.
 

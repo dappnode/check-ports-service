@@ -1,0 +1,13 @@
+version: "3.4"
+
+services:
+  api:
+    container_name: check-ports-service
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+    ports:
+      - 3030:3000

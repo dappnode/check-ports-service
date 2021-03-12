@@ -10,10 +10,10 @@ WORKDIR /usr/src/app
 
 # Dependencies
 COPY package.json .
-RUN npm install
+RUN npm install --production
 
 # Code
 ADD . /usr/src/app
 
-CMD [ "npm", "start" ]
+CMD [ "node", "dist/src/index.js" ]
 EXPOSE 3000
