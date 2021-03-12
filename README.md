@@ -1,19 +1,16 @@
-check-ports-service
-Public service to check TCP ports of the requesting client.
+# API TCP ports service
+
+Public service to check TCP ports on demmand.
+
+Most blockchain proyects needs to do port forwarding to work propertly or improve their performance. Due to this reason, DAppNode has developed a new service to track dappnode users ports on demmand and provide a better support in this field.
+
+This API does not track UDP ports due to its untraceability.
 
 ### Request
 
-##### Structure:
-
-http://**domain(to be defined)**/**dappnode publicIp**?**tcpPorts="ports separated by commas"**
-
-##### Example:
-
-http://**domain(to be defined)**/**172.123.456.324**?**tcpPorts=1194,8092,4332&udpPorts=8080,5674**
+http://**API-domain**/**dappnode-publicIp**?**tcpPorts="1194,8092,4000"**
 
 ### Response
-
-##### structure:
 
 ```
 {
@@ -31,6 +28,10 @@ http://**domain(to be defined)**/**172.123.456.324**?**tcpPorts=1194,8092,4332&u
 }
 ```
 
-##### Example:
+##### Response Example:
 
 **[{"tcpPort":8092,"status":"open"},{"tcpPort":1194,"status":"closed"}]**
+
+#### License
+
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details
