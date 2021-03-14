@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start:dev": "nodemon",
-    "build": "rimraf ./dist && tsc",
+    "build": "tsc",
     "start": "npm run build && node dist/src/index.js",
     "test": "mocha dist/tests/index.test.ts"
   },
