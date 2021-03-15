@@ -1,21 +1,29 @@
-FROM node:15.11.0-alpine3.10
+# Stage 1: Build
+FROM node:15.11.0-alpine3.10 as builder
 
-# Env
-ENV PORT 3000
-
-# Create Directory for the Container
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-# Dependencies
 COPY package*.json ./
 RUN npm install
 
-# Code
 COPY . .
-
-# compile Typescript
 RUN npm run build
 
-CMD [ "node", "./dist/src/index.js" ]
+# Stage 2
+FROM node:15.11.0-alpine3.10
+
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+RUN npm install --production
+
+COPY --from=builder /usr/src/app/dist ./dist
+
+WORKDIR /usr/src/app/dist/src
+
+CMD [ "node", "index.js" ]
+
 EXPOSE 3000
+ENV PORT 3000
