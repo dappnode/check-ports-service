@@ -5,7 +5,11 @@ import rateLimit from "express-rate-limit";
 import { port } from "./params/params";
 import { HttpError } from "./utils/httpError";
 import { tcpPortsScan } from "./tcpScan/tcpPortsScan";
-import { isValidIp, arePortsInRange, isInLimitNumberOfPorts } from "./utils/requestAssertions";
+import {
+  isValidIp,
+  arePortsInRange,
+  isInLimitNumberOfPorts,
+} from "./utils/requestAssertions";
 import { parseSanitizePortsReq } from "./utils/parseSanitizeTcpPortsReq";
 import { PortsScan } from "./types/types";
 
@@ -17,6 +21,17 @@ const limiter = rateLimit({
   // error code when too many requests: 429
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // limit each IP to 100 requests per windowMs
+
+  // Parse the response to JSON when rate limit is triggered
+  handler: (_, res) => {
+    const errorResponse = {
+      status: "error",
+      message: "Too many requests, please try again later!",
+      code: 429,
+    };
+
+    res.status(429).json(errorResponse);
+  },
 });
 
 //  apply to all requests
@@ -44,7 +59,10 @@ app.get("/:host", async (req, res) => {
         throw new HttpError("Too many ports introduced, no more than 20", 400);
 
       try {
-        portsScanResponse.tcpPorts = await tcpPortsScan({ ports: ports.tcpPorts, host });
+        portsScanResponse.tcpPorts = await tcpPortsScan({
+          ports: ports.tcpPorts,
+          host,
+        });
       } catch (e) {
         throw new HttpError(`Error scanning tcp ports. Error: ${e}`, 500);
       }
